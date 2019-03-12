@@ -1,1 +1,2 @@
-# data-relationships-with-sql-and-sequelize
+
+# Data Relationships with SQL and Sequelize
