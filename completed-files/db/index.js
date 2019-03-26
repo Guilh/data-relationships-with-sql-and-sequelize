@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
+console.info('Instantiating and configuring the Sequelize object instance...');
+
 const options = {
   dialect: 'sqlite',
   storage: 'movies.db',
@@ -38,6 +40,7 @@ fs
 // If available, call method to create associations.
 Object.keys(models).forEach((modelName) => {
   if (models[modelName].associate) {
+    console.info(`Configuring the associations for the ${modelName} model...`);
     models[modelName].associate(models);
   }
 });
