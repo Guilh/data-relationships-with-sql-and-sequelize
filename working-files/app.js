@@ -67,10 +67,12 @@ sequelize
       Movie.create({
         title: 'The Iron Giant',
         releaseYear: 1999,
+        directorPersonId: bradBird.id,
       }),
       Movie.create({
         title: 'The Incredibles',
         releaseYear: 2004,
+        directorPersonId: bradBird.id,
       }),
     ]);
   })
@@ -89,14 +91,26 @@ sequelize
 
     // TODO Update this query to include any related data.
 
-    return Movie.findAll();
+    return Movie.findAll({
+      include: [
+        {
+          model: Person,
+          as: 'director',
+        },
+      ],
+    });
   })
   .then((data) => {
     console.log(JSON.stringify(data, null, 2));
 
-    // TODO Update this query to include any related data.
-
-    return Person.findAll();
+    return Person.findAll({
+      include: [
+        {
+          model: Movie,
+          as: 'director',
+        },
+      ],
+    });
   })
   .then((data) => {
     console.log(JSON.stringify(data, null, 2));
